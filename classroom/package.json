@@ -1,8 +1,14 @@
 {
     "scripts": {
-        "server": "json-server server.json"
+        "server": "json-server server.json",
+        "build": "babel main.js --watch --out-dir dist"
     },
     "dependencies": {
         "json-server": "^1.0.0-alpha.17"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.28.3",
+        "@babel/core": "^7.28.5",
+        "@babel/preset-env": "^7.28.5"
     }
 }

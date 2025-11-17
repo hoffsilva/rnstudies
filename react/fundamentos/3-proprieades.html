@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rocketseat - React.js - Fundamentos</title>
+    </head>
+    <body>
+        <div id="root">div responsavel por renderizar aplicao no React.js</div>
+
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        // react e react-dom devem estar sempre na mesma versao, como o 18 do codigo abaixo.
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+
+            const buttonVariants = {
+                primary: 'bg-blue-500 hover:bg-blue-700',
+                secondary: 'bg-green-500 hover:bg-green-700',
+                tertiary: 'bg-red-500 hover:bg-red-700'
+            }
+
+            const Button = ({variant = 'primary', children, classNme, ...props}) =>  {
+                return (
+                    <button className={`
+                        px-3
+                        py-2
+                        rounded
+                        text-white
+                        ${buttonVariants[variant]}}
+                        ${classNme}
+                        `}
+                        
+                        {...props}
+                        >
+                        {children}
+                    </button>
+                );
+            }
+
+            const App = () => {
+                return (
+                    <main className="flex gap-2 p-3">
+                    children
+                    <Button children="aqui vai o children"/>
+                    <Button>Outra forma de mostrar o childerns</Button>
+
+                    variants
+                    <Button variant="primary" title="Titulo" />
+                    <Button variant="secondary" />
+                    <Button variant="tertiary" />
+                    </main>
+                );
+            }
+
+           // Renderiza o titulo na div com id "root"
+           // Utiliza o ReactDOM.createRoot() para renderizar o componente na raiz do documento
+            ReactDOM.createRoot(document.getElementById('root'))
+           .render(
+                <App />
+           )
+        </script>
+    </body>
+</html>

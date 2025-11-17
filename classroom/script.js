@@ -84,8 +84,8 @@ console.log(student.point)
 
 "use strict";
 
-function sum(a, a, c) {
-  return a + a + c
+function sum(a, b, c) {
+  return a + b + c
 }
 
 console.log(sum(1, 3, 2))
