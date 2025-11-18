@@ -7,20 +7,29 @@
     </head>
     <body>
         <div id="root">div responsavel por renderizar aplicao no React.js</div>
-
-        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-        // react e react-dom devem estar sempre na mesma versao, como o 18 do codigo abaixo.
+        
         <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
+
+            const Counter = () =>  {
+                const [counter, setCounter] = React.useState(0)
+                return (
+                    <>
+                        <h1>Contador: {counter}</h1>  
+                        <button onClick = {() => setCounter(counter+1)}>Incrementar</button>
+                        <button onClick = {() => setCounter(counter-1)}>Decrementar</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue + 1)}>Incrementar com prev value</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue - 1)}>Decrementar com prev value</button>
+                    </>
+                )
+            }
+
             const App = () => {
                 return (
-                    <main className = {`
-                        py-28 
-                        px-4
-                        `}>
-                        ...
+                    <main>
+                        <Counter />
                     </main>
                 );
             }

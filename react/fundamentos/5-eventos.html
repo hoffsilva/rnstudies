@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rocketseat - React.js - Fundamentos</title>
+    </head>
+    <body>
+        <div id="root">div responsavel por renderizar aplicao no React.js</div>
+        // react e react-dom devem estar sempre na mesma versao, como o 18 do codigo abaixo.
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+
+            const Alert1 = () =>  {
+
+                function handleAlertClick() {
+                    console.log(event)
+                    alert('Alerta 1')
+                }
+            
+                return (
+                    <button type = "button" onClick = {handleAlertClick}>Alerta 1</button>
+                )
+            }
+
+            const Alert2 = () =>  {
+
+                function handleAlertClick(msg) {
+                    console.log(event)
+                    alert('Alerta com parametro')
+                }
+            
+                return (
+                    <button type = "button" onClick = {() => handleAlertClick('msg dinamica')}>Alerta com parametro</button>
+                )
+            }
+
+            const Alert3 = () =>  {
+
+                function handleAlertClick(event) {
+                    console.log(event)
+                    alert(event.target.previousSibling.value)
+                }
+            
+                return (
+                    <div>
+                        <input type = "text" placeholder="digite algo..."/>
+                        <button type = "button" onClick = {handleAlertClick}>Alerta do campo de texto</button>
+                    </div>
+                )
+            }
+
+            // Define um componente chamado App
+
+               const App = () => {
+                return (
+                    <main>
+                        <Alert1 />
+                        <Alert2 />
+                        <Alert3 />
+                    </main>
+                );
+            }
+
+           // Renderiza o titulo na div com id "root"
+           // Utiliza o ReactDOM.createRoot() para renderizar o componente na raiz do documento
+            ReactDOM.createRoot(document.getElementById('root'))
+           .render(
+                <App />
+           )
+        </script>
+    </body>
+</html>
