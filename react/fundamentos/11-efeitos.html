@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rocketseat - React.js - Fundamentos</title>
+    </head>
+    <body>
+        <div id="root">div responsavel por renderizar aplicao no React.js</div>
+        
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+
+            const Counter = () =>  {
+                const [counter, setCounter] = React.useState(0)
+                const [name, setName] = React.useState('')
+                
+                React.useEffect(() => {
+                    console.log('Contador renderizado')
+                    // Executar codigo assim que o componente for renderizado
+                    // Ex: requisitar dados da API ou inicializar variaveis globais
+                    return () => {
+                        console.log('Contador desmontado')
+                    }
+                }, [])
+
+                React.useEffect(() => {
+                    console.log(`Nome atual}`)
+                })
+
+                React.useEffect(() => {
+                    if (counter > 0) {
+                        console.log(`Contador atualizado: ${counter}`)
+                    }
+                    // Executar codigo assim que o componente for renderizado
+                    // Ex: requisitar dados da API ou inicializar variaveis globais
+                }, [counter])
+
+                React.useEffect(() => {
+                    console.log(`Nome ou contador atualizado: ${name}`)
+                }, [counter, name])
+
+                return (
+                    <>
+                        <div>
+                            <label>Nome</label>
+                            <input type="text" onChange = {(event) => setName(event.target.value)} />
+                        </div>
+                        <h1>Contador: {counter}</h1>  
+                        <button onClick = {() => setCounter(counter+1)}>Incrementar</button>
+                        <button onClick = {() => setCounter(counter-1)}>Decrementar</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue + 1)}>Incrementar com prev value</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue - 1)}>Decrementar com prev value</button>
+                    </>
+                )
+            }
+
+            const App = () => {
+                const [show, setShow] = React.useState(true)
+                return (
+                    <main>
+                        <button onClick = {() => setShow(!show)}>mostrar ocultar contador</button>
+                        <hr />
+                        { show && <Counter />}
+                    </main>
+                );
+            }
+
+           // Renderiza o titulo na div com id "root"
+           // Utiliza o ReactDOM.createRoot() para renderizar o componente na raiz do documento
+            ReactDOM.createRoot(document.getElementById('root'))
+           .render(
+                <App />
+           )
+        </script>
+    </body>
+</html>

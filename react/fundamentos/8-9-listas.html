@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rocketseat - React.js - Fundamentos</title>
+    </head>
+    <body>
+        <div id="root">div responsavel por renderizar aplicao no React.js</div>
+
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            
+            const ListNames = () => {
+                const [names] = React.useState(["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hannah", "Ian", "Jack", "Kate", "Lisa", "Mary", "Nancy", "Olivia", "Peter",])
+                const [filteredNames, setFilteredNames] = React.useState("")
+                return (
+                    <div>
+                        <input
+                        type="text"
+                        placeholder="Filtrar nomes..."
+                        value={filteredNames}
+                        onChange={(event) => setFilteredNames(event.target.value)}
+                    />
+                    <ul>
+                        {names
+                            .filter(name => name.toLowerCase().includes(filteredNames.toLowerCase()))
+                            .map((name, index) => (<li key={`${index}-${name}`}>{name}</li>))
+                        }
+                    </ul>
+                    </div>
+                )
+            }
+
+            const App = () => {
+                return (
+                    <main>
+                        <h1>Listando nomes</h1>
+                        <ListNames />
+                    </main>
+                );
+            }
+
+           // Renderiza o titulo na div com id "root"
+           // Utiliza o ReactDOM.createRoot() para renderizar o componente na raiz do documento
+            ReactDOM.createRoot(document.getElementById('root'))
+           .render(
+                <App />
+           )
+        </script>
+    </body>
+</html>

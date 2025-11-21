@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rocketseat - React.js - Fundamentos</title>
+    </head>
+    <body>
+        <div id="root">div responsavel por renderizar aplicao no React.js</div>
+        
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+
+            const CounterContext = React.createContext();
+
+            function CounterProvider({ children }) {
+                const [savedCounts, setSavedCounts] = React.useState([])
+
+                function saveCounts(count) {
+                    setSavedCounts((prev) => [...prev, count])
+                }
+
+                return (
+                    <CounterContext.Provider
+                        value ={{ savedCounts, saveCounts }}
+                    >
+                        {children}
+                    </CounterContext.Provider>
+                )
+            }
+
+            const Counter = () =>  {
+                const [counter, setCounter] = React.useState(0)
+                const { savedCounts, saveCounts } = React.useContext(CounterContext)
+                return (
+                    <>
+                        <h1>Contador: {counter} - Ultimo valor salvo: { savedCounts.length-1 }</h1>  
+                        <button onClick = {() => setCounter(counter+1)}>Incrementar</button>
+                        <button onClick = {() => setCounter(counter-1)}>Decrementar</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue + 1)}>Incrementar com prev value</button>
+                        <button onClick = {() => setCounter((prevValue) => prevValue - 1)}>Decrementar com prev value</button>
+                        <button onClick = {() => saveCounts(counter)}>Salvar</button>
+                    </>
+                )
+            }
+
+            const CounterList = () => {
+                const { savedCounts } = React.useContext(CounterContext)
+                return (
+                    <div>
+                        <h2>Contadores Salvos:</h2>
+                        <ul>
+                            {savedCounts.map((value, index) => (
+                                <li key={`item-${index}`}>{value}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )
+            }
+
+            const App = () => {
+                return (
+                    <main>
+                        <CounterProvider>
+                            <Counter />
+                            <hr />
+                            <CounterList />
+                        </CounterProvider>
+                    </main>
+                );
+            }
+
+           // Renderiza o titulo na div com id "root"
+           // Utiliza o ReactDOM.createRoot() para renderizar o componente na raiz do documento
+            ReactDOM.createRoot(document.getElementById('root'))
+           .render(
+                <App />
+           )
+        </script>
+    </body>
+</html>
