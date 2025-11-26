@@ -1,0 +1,1 @@
+export const fetcher = (resource: string) => fetch(`http://localhost:3000/${resource}`).then(res => res.json())
