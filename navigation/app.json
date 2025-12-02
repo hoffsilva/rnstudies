@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "navigation",
+    "slug": "navigation",
+    "version": "1.0.0",
+    "ios": {
+      "appleTeamId": "C434CHPZ37"
+    }
+  }
+}
