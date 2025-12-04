@@ -1,8 +1,10 @@
-import { createStaticNavigation } from '@react-navigation/native';
-import { StackRoutes } from './StackRoutes';
-
-const Navigation = createStaticNavigation(StackRoutes);
+import { NavigationContainer } from '@react-navigation/native';
+import { LeftDrawerRoutes } from './LeftDrawerRoutes';
 
 export function Routes() {
-  return <Navigation />;
+  return (
+    <NavigationContainer>
+      <LeftDrawerRoutes />
+    </NavigationContainer>
+  );
 }
