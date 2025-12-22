@@ -21,14 +21,17 @@ export function PageHeader({ title, subtitle, rightButton }: PageHeaderProps) {
         <Pressable onPress={() => router.back()}>
           <MaterialIcons name="arrow-back" size={24} color={colors.black} />
         </Pressable>
-        <Text style={styles.title}>{title}</Text>
-        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+
         {rightButton && (
           <Pressable onPress={rightButton.onPress}>
-            <MaterialIcons name={rightButton.icon} size={24} color={colors.black} />
+            <MaterialIcons name={rightButton.icon} size={24} color={colors.gray[500]} />
           </Pressable>
         )}
+        
       </View>
+      <Text style={styles.title}>{title}</Text>
+        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+        
     </View>
   );
 }
